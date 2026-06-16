@@ -1,7 +1,7 @@
 "use client"
 import { Pie } from "@visx/shape"
 import { Group } from "@visx/group"
-import { useTransition, animated, to } from "@react-spring/web"
+import { useTransition, animated, to, config } from "@react-spring/web"
 import { useEffect, useState } from "react"
 
 const sampledata = [
@@ -25,7 +25,8 @@ function AnimatedArcs({ arcs, path }: { arcs: any[]; path: any }) {
       endAngle: arc.endAngle,
       opacity: 1,
     }),
-    keys: (arc) => arc.data.label
+    keys: (arc) => arc.data.label,
+    config: config.wobbly
   })
 
   return (
@@ -46,8 +47,8 @@ function AnimatedArcs({ arcs, path }: { arcs: any[]; path: any }) {
                 (startAngle, endAngle) => path({ ...arc, startAngle, endAngle })
               )}
               fill={arc.data.color}
-              stroke="white"
-              strokeWidth={2}
+              stroke="#ededed"
+              strokeWidth={6}
               style={{ opacity: props.opacity }}
             />
 
@@ -96,9 +97,10 @@ export default function SkillChart({ width = 400, height = 400 }) {
   const centerX = width / 2
   const centerY = height / 2
   const radius = Math.min(width, height) / 2
-  const dounutThickness = 80
+  const dounutThickness = 75
 
   const [data, setData] = useState<any[]>([])
+  const totalLines = 10000
 
   //読み込み時にセット
   useEffect(() => {
@@ -106,19 +108,50 @@ export default function SkillChart({ width = 400, height = 400 }) {
   }, [])
 
   return (
-    <svg width={width} height={height}>
-      <Group top={centerY} left={centerX}>
-        <Pie
-          data={data}
-          pieValue={getUsage}
-          outerRadius={radius}                     // 外側の半径
-          innerRadius={radius - dounutThickness}    // 内側の半径（★ここがドーナツの要！）
-        >
-          {/* 4. 計算された角度データ(arcs)を元に、SVGの図形(path)を描画する */}
-          {(pie) => <AnimatedArcs arcs={pie.arcs} path={pie.path} />}
-        </Pie>
-      </Group>
-    </svg>
+    <div className="flex flex-col items-center justify-center gap-6 p-4">
+
+      {/* ★ ポイント1: 親要素を relative にして、幅と高さをSVGに合わせる */}
+      <div
+        className="relative flex items-center justify-center"
+        style={{ width, height }}
+      >
+
+        {/* 1. グラフ本体（一番下の層） */}
+        {/* SVG自体は absolute inset-0 で枠にピッタリ合わせる */}
+        <svg width={width} height={height} className="absolute inset-0">
+          <Group top={centerY} left={centerX}>
+            <Pie
+              data={data}
+              pieValue={getUsage}
+              outerRadius={radius}
+              innerRadius={radius - dounutThickness}
+            >
+              {(pie) => <AnimatedArcs arcs={pie.arcs} path={pie.path} />}
+            </Pie>
+          </Group>
+        </svg>
+
+        {/* 2. 中央のTotalテキスト（SVGの上の層） */}
+        {/* ★ ポイント2: absolute でど真ん中に配置。pointer-events-none でマウスクリックを貫通させる */}
+        <div className="absolute flex flex-col items-center justify-center pointer-events-none">
+
+          <span className="text-sm font-semibold text-gray-500 tracking-wider">
+            Total Code
+          </span>
+
+          <span className="text-4xl font-bold text-gray-800 leading-none mt-2">
+            {totalLines.toLocaleString()} {/* toLocaleString で 10,000 とカンマ区切りにする */}
+          </span>
+
+          <span className="text-xs font-medium text-gray-400 mt-1">
+            lines
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
   )
 }
 
