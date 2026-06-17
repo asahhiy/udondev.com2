@@ -5,9 +5,9 @@ import { useTransition, animated, to, config } from "@react-spring/web"
 import { useEffect, useState } from "react"
 
 const sampledata = [
-  { label: "Swift", usage: 60, color: "#4285F4", iconClass: "devicon-swift-plain colored" },
-  { label: "", usage: 20, color: "#000000", iconClass: "devicon-typescript-plain colored" },
-  { label: "Golang", usage: 10, color: "#FF7139", iconClass: "devicon-go-plain colored" },
+  { label: "Swift", usage: 23, color: "#FF7139", iconClass: "devicon-swift-plain colored" },
+  { label: "", usage: 67, color: "#003FD3", iconClass: "devicon-typescript-plain colored" },
+  { label: "Golang", usage: 10, color: "##5CBEFF", iconClass: "devicon-go-plain colored" },
 ]
 
 const getUsage = (d: any) => d.usage
@@ -108,17 +108,17 @@ export default function SkillChart({ width = 400, height = 400 }) {
   }, [])
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 p-4">
+    <div className="flex flex-col items-center justify-center gap-6 p-4  w-full">
 
       {/* ★ ポイント1: 親要素を relative にして、幅と高さをSVGに合わせる */}
       <div
-        className="relative flex items-center justify-center"
-        style={{ width, height }}
+        className="relative flex items-center justify-center w-full max-w-100 aspect-square"
+
       >
 
         {/* 1. グラフ本体（一番下の層） */}
         {/* SVG自体は absolute inset-0 で枠にピッタリ合わせる */}
-        <svg width={width} height={height} className="absolute inset-0">
+        <svg viewBox={`0 0 ${width} ${height}`} className="absolute inset-0 w-full h-full" >
           <Group top={centerY} left={centerX}>
             <Pie
               data={data}
