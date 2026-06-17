@@ -30,7 +30,7 @@ export default function UsingLibraryTable() {
           <tr className="transition-colors hover:bg-gray-50 gap-1 h-50">
             <th
               scope="row"
-              className="px-6 py-1 font-medium text-gray-900 whitespace-nowrap"
+              className="px-2 font-medium text-gray-900 whitespace-nowrap"
             >
 
               <img src="https://img.shields.io/badge/-Typescript-555.svg?logo=typescript&style=flat" />
@@ -40,13 +40,14 @@ export default function UsingLibraryTable() {
               <img src="https://img.shields.io/badge/-Swift-555.svg?logo=Swift&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-Clang-555.svg?logo=C&amp;style=flat" height="30" />
             </th>
-            <td className="px-6 py-4">
+            <td className="px-2">
               <img src="https://img.shields.io/badge/-Windows-555.svg?logo=windows&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-mac-555.svg?logo=macOS&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-ubuntu-555.svg?logo=ubuntu&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-Debian-555.svg?logo=Debian&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-Kali-555.svg?logo=kalilinux&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-PostgreSQL-555.svg?logo=PostgreSQL&amp;style=flat" height="30" />
+              <img src="https://img.shields.io/badge/-SQLite-555.svg?logo=SQLite&amp;style=flat" height="30" />
 
             </td>
             <td className="px-2">
@@ -62,7 +63,7 @@ export default function UsingLibraryTable() {
               <img src="https://img.shields.io/badge/-Expo-555.svg?logo=Expo&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-Hono-555.svg?logo=Hono&amp;style=flat" height="30" />
             </td>
-            <td className="px-6 py-4">
+            <td className="px-2">
               <img src="https://img.shields.io/badge/-Vercel-555.svg?logo=vercel&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-CloudFlare-555.svg?logo=cloudflare&amp;style=flat" height="30" />
               <img src="https://img.shields.io/badge/-NeonDB-555.svg?logo=Neon&amp;style=flat" height="30" />

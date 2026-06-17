@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@300&family=Madimi+One&family=Pathway+Gothic+One&family=Poiret+One&family=Special+Gothic+Expanded+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=LINE+Seed+JP&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -16,6 +17,7 @@
   --font-bebas: "Bebas Neue", sans-serif;
   --font-alumi: "Rubik 80s Fade", sans-serif;
   --font-pathway: "Pathway Gothic One", sans-serif;
+  --font-lineSeed: "LINE Seed JP", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
